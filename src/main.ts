@@ -1,6 +1,10 @@
 import { createApp } from 'vue';
+import { Quasar } from 'quasar';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
-createApp(App).use(store).use(router).mount('#app');
+import 'quasar/dist/quasar.sass';
+
+createApp(App).use(Quasar).use(store).use(router)
+  .mount('#app');
