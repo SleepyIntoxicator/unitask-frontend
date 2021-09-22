@@ -1,6 +1,11 @@
 <template>
   <q-layout>
-    <UHeader :project="projectName" :account-info="AccountInfo"></UHeader>
+    <UHeader :project="projectName"
+             :account-info="AccountInfo"
+             @onSignUp="signUp"
+             @onLogin="LogIn"
+             @onLogout="LogOut"
+    ></UHeader>
     <!--    PAGE  -->
     <q-page-container>
       <div>
@@ -44,7 +49,7 @@ export default defineComponent({
       AccountInfo: {
         loggedIn: false,
       },
-      projectName: 'Unitaska',
+      projectName: 'Unitask',
     };
   },
   computed: {
@@ -55,8 +60,21 @@ export default defineComponent({
   },
   methods: {
     changeAccountState(): void {
-      console.log(this.AccountInfo.loggedIn);
+      if (this.AccountInfo.loggedIn) {
+        console.log('User logged out');
+      } else {
+        console.log('User logged in');
+      }
       this.AccountInfo.loggedIn = !this.AccountInfo.loggedIn;
+    },
+    signUp(): void {
+      this.changeAccountState();
+    },
+    LogIn(): void {
+      this.changeAccountState();
+    },
+    LogOut(): void {
+      this.changeAccountState();
     },
   },
 });

@@ -22,13 +22,15 @@
           <q-route-tab to="/about/vue" label="Vue"/>
         </q-tabs>
         <q-btn v-if="!accountInfo.loggedIn"
-               @click="onSignUp"
+               @click="this.$emit('onSignUp')"
                outline unelevated class="primary">Sign up
         </q-btn>
         <q-btn v-if="!accountInfo.loggedIn"
-               @click="onLogIn"
+               @click="this.$emit('onLogin')"
                outline unelevated class="primary">Log in</q-btn>
-
+        <q-btn v-if="accountInfo.loggedIn"
+               @click="this.$emit('onLogout')"
+               outline unelevated class="primary">Log out</q-btn>
       </div>
       <!--        end-->
     </q-toolbar>
@@ -55,7 +57,7 @@ export default {
   },
   methods: {
     onSignUp(): void {
-      return undefined;
+      // this.$emit('changeAccountState');
     },
     onLogIn(): void { return undefined; },
   },
