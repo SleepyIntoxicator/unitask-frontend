@@ -1,12 +1,14 @@
 <template>
-  <q-header class="bg-orange-3">
+  <q-header class="q-py-xs bg-orange-3" height-hint="58">
     <q-toolbar class="justify-between">
       <!--        left side-->
-      <div class="col-3">
-      </div>
+      <q-btn flat dense round aria-label="Menu" icon="menu"></q-btn>
+
+      <q-space/>
+
       <!--        center side-->
-      <router-link to="/" class="text-white " style="text-decoration: none">
-        <q-toolbar-title align="center" class="col-2">
+      <router-link to="/" class="text-white " style="text-decoration: none;">
+        <q-toolbar-title align="center">
           <q-avatar>
             <img
               src="https://cdn.discordapp.com/attachments/886405500428763166/886416054891450368/Logo_v2.png"
@@ -15,32 +17,43 @@
           {{ project }}
         </q-toolbar-title>
       </router-link>
+
+      <q-space/>
+
       <!--        right side-->
-      <div class="row no-wrap">
+      <div class="q-gutter-sm row items-center no-wrap">
         <q-tabs align="center">
-          <q-route-tab to="/about" label="About"/>
-          <q-route-tab to="/about/vue" label="Vue"/>
+          <q-route-tab to="/about" label="About" style="max-width: 90px"/>
+          <q-route-tab to="/about/vue" icon="hive" style="max-width: 35px"/>
         </q-tabs>
         <q-btn v-if="!accountInfo.loggedIn"
                @click="this.$emit('onSignUp')"
-               outline unelevated class="primary">Sign up
+               outline dense icon="person">
+          <q-tooltip>Create new account</q-tooltip>
+          <span :class="{ 'xs-hide sm-hide': mustHideBtnLabel }">Sign up</span>
         </q-btn>
         <q-btn v-if="!accountInfo.loggedIn"
                @click="this.$emit('onLogin')"
-               outline unelevated class="primary">Log in</q-btn>
+               outline dense icon="login">
+          <q-tooltip>Login to the account</q-tooltip>
+          <span :class="{ 'xs-hide sm-hide': mustHideBtnLabel }">Login</span>
+        </q-btn>
         <q-btn v-if="accountInfo.loggedIn"
                @click="this.$emit('onLogout')"
-               outline unelevated class="primary">Log out</q-btn>
+               outline dense icon="logout">
+          <q-tooltip>Exit from account</q-tooltip>
+          <span :class="{'hidden': mustHideLogoutBtnLabel}">Logout</span>
+        </q-btn>
       </div>
-      <!--        end-->
     </q-toolbar>
   </q-header>
 </template>
 
 <script lang="ts">
-// import { ref } from 'vue';
 
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UHeader',
   props: {
     project: {
@@ -52,16 +65,19 @@ export default {
       required: true,
     },
   },
+  emits: ['onSignUp', 'onLogin', 'onLogout'],
   data() {
     return {};
   },
-  methods: {
-    onSignUp(): void {
-      // this.$emit('changeAccountState');
+  computed: {
+    mustHideBtnLabel() {
+      return this.$q.screen.width < 800;
     },
-    onLogIn(): void { return undefined; },
+    mustHideLogoutBtnLabel() {
+      return this.$q.screen.width < 600;
+    },
   },
-};
+});
 </script>
 
 <style scoped>
