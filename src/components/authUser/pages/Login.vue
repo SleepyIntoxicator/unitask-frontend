@@ -54,7 +54,7 @@ export default defineComponent({
         },
       });
       console.log('login l:', this.loginData.login, ' p: ', this.loginData.password);
-      this.$router.push('/');
+      this.$router.push({ path: '/main/home' });
     },
   },
 });
