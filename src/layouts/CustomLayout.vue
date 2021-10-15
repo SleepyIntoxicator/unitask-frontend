@@ -1,5 +1,6 @@
 <template>
   <q-layout>
+    <h5 style="position: relative;">Custom layout</h5>
     <router-view></router-view>
   </q-layout>
 </template>
