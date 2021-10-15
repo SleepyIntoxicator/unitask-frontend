@@ -7,8 +7,9 @@
       <q-space/>
 
       <!--        center side-->
-      <router-link to="/" class="text-white " style="text-decoration: none;">
+      <router-link to="/landing" class="text-white " style="text-decoration: none;">
         <q-toolbar-title align="center">
+          <q-icon size="xs" title="Temp" class="q-ml-sm"></q-icon>
           <q-avatar>
             <img
               src="https://cdn.discordapp.com/attachments/886405500428763166/886416054891450368/Logo_v2.png"
@@ -27,19 +28,19 @@
           <q-route-tab to="/about/vue" icon="hive" style="max-width: 35px"/>
         </q-tabs>
         <q-btn v-if="!accountInfo.loggedIn"
-               @click="this.$emit('onSignUp')"
+               @click="onSignUp"
                outline dense icon="person">
           <q-tooltip>Create new account</q-tooltip>
           <span :class="{ 'xs-hide sm-hide': mustHideBtnLabel }">Sign up</span>
         </q-btn>
         <q-btn v-if="!accountInfo.loggedIn"
-               @click="this.$emit('onLogin')"
+               @click="onLogin"
                outline dense icon="login">
           <q-tooltip>Login to the account</q-tooltip>
           <span :class="{ 'xs-hide sm-hide': mustHideBtnLabel }">Login</span>
         </q-btn>
         <q-btn v-if="accountInfo.loggedIn"
-               @click="this.$emit('onLogout')"
+               @click="onLogout"
                outline dense icon="logout">
           <q-tooltip>Exit from account</q-tooltip>
           <span :class="{'hidden': mustHideLogoutBtnLabel}">Logout</span>
@@ -70,11 +71,22 @@ export default defineComponent({
     return {};
   },
   computed: {
-    mustHideBtnLabel() {
+    mustHideBtnLabel() :boolean {
       return this.$q.screen.width < 800;
     },
-    mustHideLogoutBtnLabel() {
+    mustHideLogoutBtnLabel() :boolean {
       return this.$q.screen.width < 600;
+    },
+  },
+  methods: {
+    onSignUp() :void {
+      this.$router.push({ path: '/signup' });
+    },
+    onLogin() :void {
+      this.$router.push({ path: '/login' });
+    },
+    onLogout() :void {
+      this.$router.push({ path: '/logout' });
     },
   },
 });
