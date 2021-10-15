@@ -16,17 +16,28 @@
         </div>
       </div>
       <router-view/>
+      <section>
+        <p>Unitask - is the app to help students</p>
+      </section>
+      <section>
+        <p>Unitask - is the app to help students</p>
+      </section>
+      <section>
+        <p>Unitask - is the app to help students</p>
+      </section>
+      <section>
+        <p>Unitask - is the app to help students</p>
+      </section>
     </q-page-container>
     <!--    END PAGE-->
-    <q-footer class="bg-grey-8 text-white">
-      <div>Unitask {{ currentYear }} by Slintox</div>
-    </q-footer>
+    <ULandingFooter/>
   </q-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import UHeader from '../components/Header.vue';
+import UHeader from '../components/UHeader.vue';
+import ULandingFooter from '@/components/ULandingFooter.vue';
 
 export class AccountState {
   loggedIn: boolean;
@@ -41,8 +52,10 @@ export class AccountState {
 } */
 
 export default defineComponent({
+  name: 'LandingLayout',
   components: {
     UHeader,
+    ULandingFooter,
   },
   data() {
     return {
@@ -79,3 +92,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+  section {
+    padding: 30px 0;
+    margin: 30px 0;
+    height: 300px;
+    border-bottom: 1px solid #F2C037;
+  }
+</style>
