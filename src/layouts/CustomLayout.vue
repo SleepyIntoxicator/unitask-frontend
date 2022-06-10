@@ -1,6 +1,6 @@
 <template>
-  <q-layout>
-    <h5 style="position: relative;">Custom layout</h5>
+  <q-layout view="hHh Lpr fff" class="custom-layout">
+    <h5 style="position: fixed;">Custom layout</h5>
     <router-view></router-view>
   </q-layout>
 </template>
@@ -14,5 +14,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.custom-layout h5 {
+  margin: 10px auto;
+}
 </style>
