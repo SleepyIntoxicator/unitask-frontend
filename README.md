@@ -1,4 +1,9 @@
-# unitask-front-end
+# unitask-frontend
+
+Attempt to create a website for the unitask service.
+
+Link to the backend of the service: [unitask-backend](https://github.com/SleepyIntoxicator/unitask-backend)
+
 
 ## Project setup
 ```
@@ -19,6 +24,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
